@@ -24,7 +24,11 @@
     </environments>
 
     <mappers>
-        <mapper resource="com/gim/dao/UserDao.xml"></mapper>
-        <mapper resource="com/gim/dao/AdminDao.xml"></mapper>
+        <mapper class="ssmBook.dao.AdminDao"></mapper>
+        <mapper class="ssmBook.dao.BookDao"></mapper>
+        <mapper class="ssmBook.dao.CategoryDao"></mapper>
+        <mapper class="ssmBook.dao.IndentDao"></mapper>
+        <mapper class="ssmBook.dao.ItemDao"></mapper>
+        <mapper class="ssmBook.dao.UserDao"></mapper>
     </mappers>
 </configuration>
