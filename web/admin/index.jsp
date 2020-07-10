@@ -18,7 +18,7 @@
 
     <br><br>
 
-    <div class="alert alert-success" role="alert">${msg}</div>
+    <div class="alert alert-success" role="alert" style="background-color: #2b542c">${msg}hhhh</div>
 
 </div>
 </body>
