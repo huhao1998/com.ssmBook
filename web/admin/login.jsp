@@ -32,34 +32,31 @@
             margin: 0;
         }
 
-        /* 头部样式 */
         .header {
             background-color: #f1f1f1;
             padding: 20px;
             text-align: center;
         }
-        /* 创建三个相等的列 */
-        .column {
-            float: left;
+        .father{
             width: 100%;
-            background: url(img/bg1.JPG) right bottom no-repeat;
+            height: 1200px;
         }
-
-        /* 列后清除浮动 */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
+        .son{
+            width: 1000px;
+            height: 600px;
+            position: absolute;
+            margin: 10px 20%;
         }
     </style>
+    <link rel="stylesheet" href="css/mylayout.css">
 </head>
 <body>
-<div class="header" style="background-color: #5bc0de">
-    <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
-</div>
-<%--管理员登录表单 --%>
-<div class="row">
-    <div class="column" style="text-align: center;">
+<div class="father" style="text-align: center">
+    <div class="son">
+        <div class="header" style="background-color:lightblue">
+            <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
+        </div>
+        <br>
         <form action="login" method="post">
             <table  align="center" width="300px" height="200px">
                 <tr><td width="150px" align="center">用户</td>
@@ -74,5 +71,6 @@
         </form>
     </div>
 </div>
+
 </body>
 </html>
