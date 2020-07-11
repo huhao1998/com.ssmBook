@@ -19,7 +19,7 @@ public class indent {
     public static final byte STATUS_DELETE = 3;
 
     private Integer iId;
-    private String state;
+    private byte state;
     private Integer userId;
     private String userName;
     private String loc;
@@ -34,11 +34,11 @@ public class indent {
         this.iId = iId;
     }
 
-    public String getState() {
+    public byte getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(byte state) {
         this.state = state;
     }
 
