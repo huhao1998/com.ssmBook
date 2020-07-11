@@ -2,7 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
-import ssmBook.pojo.Book;
+import ssmBook.pojo.book;
 
 import java.util.List;
 
@@ -15,28 +15,28 @@ public interface BookDao {
     /**
      * 添加图书
      */
-    @Insert("insert into book (name, cover, price, intro, auther, press, pubdate, special, news, sale, category_id,count) "
-            + "values (#{name}, #{cover}, #{price}, #{intro}, #{auther}, #{press}, #{pubdate}, #{special}, #{news}, #{sale}, #{categoryId}, #{count})")
-    public boolean insert(Book book);
+    @Insert("insert into book (bookName, img, price, count, author, press, time, grade, cld)"
+            + "values(#{bookName}, #{img}, #{price}, #{count}, #{author}, #{press}, #{time}, #{grade}, #{cId})")
+    public boolean insert(book book);
 
     /**
      *删除图书
      */
-    @Delete("delete from book where id = #{id}")
-    public boolean bookDelect(int id);
+    @Delete("delete from book where bookId = #{bookId}")
+    public boolean bookDelect(int bookId);
 
     /**
      * 修改图书
      */
-    @Update("update book set name=#{name}, cover=#{cover}, price=#{price}, intro=#{intro}, auther=#{auther}, auther=#{auther}, "
-            + "press=#{press}, pubdate=#{pubdate}, special=#{special}, news=#{news}, sale=#{sale}, category_id=#{categoryId}, count=#{count} where id=#{id}")
-    public boolean update(Book newbook);
+    @Update("update book set bookName=#{bookName}, img=#{img}, price=#{price}, count=#{count}, brief=#{brief}, author=#{author}, "
+            + "press=#{press}, time=#{time}, grade=#{grade},cId=#{cId} where bookId=#{bookId}")
+    public boolean update(book newbook);
 
     /**
      * 根据id查询图书
      */
-    @Select("select * from book where id=#{id}")
-    public Book selectById(int id);
+    @Select("select * from book where bookId=#{bookId}")
+    public book selectById(int id);
 
     /**
      * 查询共有多少本图书
@@ -47,51 +47,45 @@ public interface BookDao {
     /**
      * 通过名称查询图书共有多少本（like）
      */
-    @Select("select count(*) from book where name like concat('%',#{name},'%')")
-    public long selectTotalLikeName(@Param("name")String name);
+    @Select("select count(*) from book where bookName like concat('%',#{bookName},'%')")
+    public long selectTotalLikeName(@Param("bookName")String bookName);
 
     /**
     *查询该分类下共有多少本图书
      */
-    @Select("select count(*) from book where category_id=#{categoryId}")
-    public long sleectTotalByCategoryId();
+    @Select("select count(*) from book where cId=#{cId}")
+    public long selectTotalByCategoryId();
 
     /**
-     * 查询有多少本书被设为最新
+     * 查询所有图书，按照time的时间顺序，从新到旧排列
      */
-    @Select("select count(*) from book where news=1")
-    public long selectTotalIsNews();
+    @Select("select * from book ORDER BY time DESC limit #{begin}, #{size}")
+    public List<book> selectBookByTimeDesc(@Param("begin")int begin, @Param("size")int size);
+
 
     /**
      * 显示所有图书
      */
-    @Select("select * from book order by id desc limit #{begin}, #{size}")
-    public List<Book> selectList(@Param("begin")int begin, @Param("size")int size);
+    @Select("select * from book order by bookId desc limit #{begin}, #{size}")
+    public List<book> selectList(@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过名字查询图书
      * 注意：不止唯一结果
      */
-    @Select("select * from book where name like concat('%',#{name},'%') order by id desc limit #{begin}, #{size}")
-    public List<Book> selectListLikeName(@Param("name")String name, @Param("begin")int begin, @Param("size")int size);
+    @Select("select * from book where bookName like concat('%',#{bookName},'%') order by id desc limit #{begin}, #{size}")
+    public List<book> selectListLikeName(@Param("bookName")String bookName, @Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过分类查询图书
      */
-    @Select("select * from book where category_id=#{categoryId} order by id desc limit #{begin}, #{size}")
-    public List<Book> selectListByCategoryId(@Param("categoryId")int categoryId, @Param("begin")int begin, @Param("size")int size);
+    @Select("select * from book where cId=#{cId} order by id desc limit #{begin}, #{size}")
+    public List<book> selectListByCategoryId(@Param("cId")int cId, @Param("begin")int begin, @Param("size")int size);
 
-    /**
-     * 查询特别推荐图书
-     */
-    @Select("select * from book where special=1 order by id desc limit #{begin}, #{size}")
-    public List<Book> selectListIsSpecial(@Param("begin")int begin, @Param("size")int size);
 
-    /**
-     * 查询最近上新图书
-     */
-    @Select("select * from book where news=1 order by id desc limit #{begin}, #{size}")
-    public List<Book> selectListIsNews(@Param("begin")int begin, @Param("size")int size);
+
+
+
 
 
 

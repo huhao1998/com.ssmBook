@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import ssmBook.pojo.Admin;
+import ssmBook.pojo.admin;
 
 import java.util.List;
 
@@ -19,27 +19,27 @@ public interface AdminDao {
      * @return
      */
     @Select("select * from admin")
-    public List<Admin> findAll();
+    public List<admin> selectAll();
 
     /**
      * 通过ID查询Admin
      */
-    @Select("select * from admin where id=#{id}")
-    public Admin selectById(int id);
+    @Select("select * from admin where adminId=#{adminId}")
+    public admin selectById(int adminId);
 
     /**
      * 插入Admin
      * @return
      */
-    @Insert("insert into admin (username, password) values (#{username}, #{password})")
-    public boolean adminInsert(Admin admin);
+    @Insert("insert into admin (adminName, passWord) values (#{adminName}, #{passWord})")
+    public boolean adminInsert(admin admin);
 
     /**
      * 修改Admin密码
      * @return
      */
-    @Update("update admin set password=#{password} where id=#{id}")
-    public boolean adminUpdate(Admin admin);
+    @Update("update admin set passWord=#{passWord} where adminId=#{adminId}")
+    public boolean adminUpdate(admin admin);
 
 
 
@@ -47,13 +47,13 @@ public interface AdminDao {
     /**
      * 通过用户名查询Admin
      */
-    @Select("select * from admin where username like #{username} limit 1")
-    public Admin selectByName(@Param("username")String username);
+    @Select("select * from admin where adminName like #{adminName} limit 1")
+    public admin selectByName(@Param("adminName")String adminName);
 
     /**
      * 通过ID 查询Admin列表
      */
-    @Select("select * from admin where id = #{id}")
-    public List<Admin> selectList(int id);
+    @Select("select * from admin where adminId = #{adminId}")
+    public List<admin> selectList(int adminId);
 
 }
