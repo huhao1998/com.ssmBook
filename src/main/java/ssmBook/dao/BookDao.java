@@ -54,7 +54,7 @@ public interface BookDao {
     *查询该分类下共有多少本图书
      */
     @Select("select count(*) from book where cId=#{cId}")
-    public long selectTotalByCategoryId();
+    public long selectTotalByCategoryId(int cid);
 
     /**
      * 查询所有图书，按照time的时间顺序，从新到旧排列
