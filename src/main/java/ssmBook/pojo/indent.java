@@ -19,12 +19,30 @@ public class indent {
     public static final byte STATUS_DELETE = 3;
 
     private Integer iId;
+    private float total;
+    private Integer amount;
     private byte state;
     private Integer userId;
     private String userName;
     private String loc;
     private String tel;
     private Date time;
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
 
     public Integer getiId() {
         return iId;
