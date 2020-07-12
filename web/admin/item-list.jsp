@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh
-  Date: 2020/7/9
-  Time: 22:53
+  User: Yokyi
+  Date: 2020/7/12
+  Time: 13:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>订单详情管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -38,18 +38,8 @@
         }
         function divhidden(){
             document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加管理员";
+            document.getElementById("btnhref").innerHTML ="查看所有项目";
             document.getElementById("btnhref").href ="javascript:divShow()";
-        }
-        function divShow1(){
-            document.getElementById("btnshow1").style.display="block";
-            document.getElementById("btnhref1").innerHTML ="关闭";
-            document.getElementById("btnhref1").href ="javascript:divhidden1()";
-        }
-        function divhidden1(){
-            document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有管理员";
-            document.getElementById("btnhref1").href ="javascript:divShow1()";
         }
         function divShow2(){
             document.getElementById("btnshow2").style.display="block";
@@ -58,7 +48,7 @@
         }
         function divhidden2(){
             document.getElementById("btnshow2").style.display="none";
-            document.getElementById("btnhref2").innerHTML ="增加订单";
+            document.getElementById("btnhref2").innerHTML ="增加商品";
             document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
@@ -163,25 +153,25 @@
         </div>
         <div class="column1">
             <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
+                <tr align="center">
+                    <td>
+                        <form method="post" action="url"><!-- 在订单详情页可以查看该订单下的项目详情-->
+                            <input type="input" name="searchByItemId" placeholder="按详情编号查询"><a href="search?userid=${request.getParameter("searchByItemId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                        </form>
+                    </td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="admin-add.jsp"></c:import>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">查看所有项目</a>
+            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加商品</a>
+                <div id="btnshow" style="display: none;">
+             <c:import url="allItemList.jsp"></c:import>
         </div>
-                <div id="btnshow1" style="display: none;">
-             <c:import url="allAdminList.jsp"></c:import>
+                <div id="btnshow2" style="display: none;">
+             <c:import url="item-add.jsp"></c:import>
         </div>
         </div>    
     </div></div>
+
 </div>
 </body>
 </html>
-

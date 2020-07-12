@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>订单管理</title>
@@ -26,7 +26,11 @@
                 }
             }
         }
-<!--测试-->
+
+        window.onload=function(){
+            altRows('alternatecolor');
+        }
+
         function divShow(){
             document.getElementById("btnshow").style.display="block";
             document.getElementById("btnhref").innerHTML ="关闭";
@@ -150,18 +154,29 @@
         <ul class="nav navbar-nav">
             <li><a href="indent-list.jsp">订单管理</a></li>
             <li><a href="admin-list.jsp">管理员信息管理</a></li>
-            <li><a href="#">客户管理</a></li>
-            <li><a href="#">商品管理</a></li>
-            <li><a href="#">类别管理</a></li>
-            <li><a href="#">修改密码</a></li>
-            <li><a href="#">退出</a></li>
+            <li><a href="user-list.jsp">客户管理</a></li>
+            <li><a href="book-list.jsp">商品管理</a></li>
+            <li><a href="category-list.jsp">类别管理</a></li>
+            <li><a href="modifyPassword.jsp">修改密码</a></li>
+            <li><a href="login.jsp">退出</a></li>
         </ul>
     </div>
         <div class="column1">
-            <form method="post">
-                <input type="input" name="searchById" placeholder="按管理员账号查询"><input type="submit" value="搜索" name="search1">
-                <input type="input" name="searchByUserId" placeholder="按用户账号查询"><input type="submit" value="搜索" name="search2">
-            </form>
+            <table align="center">
+                <tr align="center">
+                    <td>
+                        <form method="post" action="url">
+                            <input type="input" name="searchById" placeholder="按订单编号查询"><a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="url">
+                            <input type="input" name="searchByUserId" placeholder="按用户账号查询"><a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                        </form>
+                    </td>
+                </tr>
+            </table>
             <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
             <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
@@ -174,17 +189,6 @@
                 <div id="btnshow2" style="display: none;">
              <c:import url="indent-add.jsp"></c:import>
         </div>
-            <%
-                String s = (String)request.getParameter("searchById");
-                if(s!=null){
-            %>
-            <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-            <td>${u.adminid}嗷嗷</td>
-            <td>${u.aname}嗷嗷</td>
-            <td>${u.apassword}</td>
-            <a href="adminDelete?id=${u.iid}">删除</a></td><!--返回id给后端，不一样的修改-->
-            </c:forEach>
-            <%}%>
         </div>    
         </div></div>
 

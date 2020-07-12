@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh
-  Date: 2020/7/9
-  Time: 22:53
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 21:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>分类管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -30,7 +30,6 @@
         window.onload=function(){
             altRows('alternatecolor');
         }
-
         function divShow(){
             document.getElementById("btnshow").style.display="block";
             document.getElementById("btnhref").innerHTML ="关闭";
@@ -38,7 +37,7 @@
         }
         function divhidden(){
             document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加管理员";
+            document.getElementById("btnhref").innerHTML ="添加分类";
             document.getElementById("btnhref").href ="javascript:divShow()";
         }
         function divShow1(){
@@ -48,7 +47,7 @@
         }
         function divhidden1(){
             document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有管理员";
+            document.getElementById("btnhref1").innerHTML ="查看所有分类";
             document.getElementById("btnhref1").href ="javascript:divShow1()";
         }
         function divShow2(){
@@ -163,18 +162,16 @@
         </div>
         <div class="column1">
             <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
+                <tr align="center">
                     <td> <form method="post" action="url">
-                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                        <input type="input" name="searchById" placeholder="按分类编号查询">&nbsp;<a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
                     </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加分类</a>
+            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有分类</a>
                 <div id="btnshow" style=" display: none;">
-             <c:import url="admin-add.jsp"></c:import>
+             <c:import url="category-add.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
              <c:import url="allAdminList.jsp"></c:import>
@@ -184,4 +181,3 @@
 </div>
 </body>
 </html>
-

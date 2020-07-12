@@ -22,6 +22,7 @@
             <td>${u.ustate }</td>
             <td><a href="itemList?id=${u.iid}">详情</a>&nbsp;
                 <a href="indentDispose?id=${u.iid}">处理</a>&nbsp;
+                <a href="indentModify?id=${u.iid}">修改</a>
                 <a href="indentDelete?id=${u.iid}">删除</a></td><!--返回id给后端-->
             </c:forEach>
         </tr>
