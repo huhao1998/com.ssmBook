@@ -2,7 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
-import ssmBook.pojo.Item;
+import ssmBook.pojo.item;
 
 import java.util.List;
 
@@ -15,26 +15,26 @@ public interface ItemDao {
     /**
      * 增加订单项目（添加购物车）
      */
-    @Insert("insert into items (price, amount, book_id, indent_id) values (#{price}, #{amount}, #{bookId}, #{indentId})")
-    public boolean insert(Item item);
+    @Insert("insert into item (bPrice, bookId, bName, bNum,iId) values (#{bPrice}, #{bookId}, #{bName}, #{bNum}, #{iId})")
+    public boolean insert(item item);
 
     /**
      * 删除订单项目
      */
-    @Delete("delete from items where id=#{id}")
-    public boolean deleteById(int id);
+    @Delete("delete from items where itemId=#{itemId}")
+    public boolean deleteById(int itemId);
 
     /**
      *修改订单项目（这有啥用？？貌似是用在增加和减少商品数量）
      */
-    @Update("update items set price=#{price}, amount=#{amount}, book_id=#{bookId}, indent_id=#{indentId} where id=#{id}")
-    public boolean update(Item item);
+    @Update("update items set bPrice=#{bPrice}, bookId=#{bookId}, bName=#{bName}, bNum=#{bNum} , iId=#{iId} where itemId=#{itemId}")
+    public boolean update(item item);
 
     /**
      * 通过订单项目ID查询订单项目
      */
-    @Select("select * from items where id=#{id}")
-    public Item select(int id);
+    @Select("select * from items where itemId=#{itemId}")
+    public item select(int id);
 
     /**
      * 查询订单项目总数
@@ -45,7 +45,7 @@ public interface ItemDao {
     /**
      * 查询一整张订单内的所有订单项目
      */
-    @Select("select * from items where indent_id=#{indentId}")
-    public List<Item> selectListByIndentId(@Param("indentId")int indentId);
+    @Select("select * from items where iId=#{iId}")
+    public List<item> selectListByIndentId(@Param("iId")int iId);
 
 }

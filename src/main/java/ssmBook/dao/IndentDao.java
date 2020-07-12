@@ -2,7 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
-import ssmBook.pojo.Indent;
+import ssmBook.pojo.indent;
 
 import java.util.List;
 
@@ -14,34 +14,34 @@ public interface IndentDao {
     /**
      * 增加订单
      */
-    @Insert("insert into indent (total, amount, status, name, phone, address, systime, user_id) "
-            + "values (#{total}, #{amount}, #{status}, #{name}, #{phone}, #{address}, now(), #{userId})")
-    public boolean insert(Indent indent);
+    @Insert("insert into indent (state, userId, userName, loc, tel, time) "
+            + "values (#{state}, #{userId}, #{userName}, #{loc}, #{tel}, #{time})")
+    public boolean insert(indent indent);
 
     /**
      * 删除订单
      */
-    @Delete("delete from indent where id=#{id}")
+    @Delete("delete from indent where iId=#{iId}")
     public boolean delete(int id);
 
     /**
      * 修改订单
      */
-    @Update("update indent set total=#{total}, amount=#{amount}, status=#{status}, name=#{name}, "
-            + "phone=#{phone}, address=#{address}, user_id=#{userId} where id=#{id}")
-    public boolean update(Indent user);
+    @Update("update indent set state=#{state}, userId=#{userId}, userName=#{userName}, loc=#{loc}, "
+            + "tel=#{tel}, time=#{time} where id=#{id}")
+    public boolean update(indent user);
 
     /**
      * 将订单从未处理标记为已处理
      */
-    @Update("update indent set status=#{status} where id=#{id}")
-    public boolean updateStatus(@Param("id")int id, @Param("status")byte status);
+    @Update("update indent set state=#{state} where iId=#{iId}")
+    public boolean updateStatus(@Param("iId")int iId, @Param("state")byte state);
 
     /**
      * 通过ID查询该订单
      */
-    @Select("select * from indent where id=#{id}")
-    public Indent selectById(int id);
+    @Select("select * from indent where iId=#{iId}")
+    public indent selectById(int iId);
 
     /**
      * 查询一共有多少订单
@@ -52,25 +52,25 @@ public interface IndentDao {
     /**
      * 查询一共有多少订单（分是否处理两种情况）
      */
-    @Select("select count(*) from indent where status=#{status}")
+    @Select("select count(*) from indent where state=#{state}")
     public long selectTotalByStatus(@Param("status")byte status);
 
     /**
      * 查询所有的订单
      */
-    @Select("select * from indent order by id desc limit #{begin}, #{size}")
-    public List<Indent> selectList(@Param("begin")int begin, @Param("size")int size);
+    @Select("select * from indent order by iId desc limit #{begin}, #{size}")
+    public List<indent> selectList(@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 查询所有的订单（分是否处理两种情况）
      */
-    @Select("select * from indent where status=#{status} order by id desc limit #{begin}, #{size}")
-    public List<Indent> selectListByStatus(@Param("status")byte status, @Param("begin")int begin, @Param("size")int size);
+    @Select("select * from indent where state=#{state} order by id desc limit #{begin}, #{size}")
+    public List<indent> selectListByStatus(@Param("status")byte status, @Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过用户ID查询名下所有订单
      */
-    @Select("select * from indent where user_id=#{userIid} order by id desc")
-    public List<Indent> selectListByUserid(@Param("userIid")int userIid);
+    @Select("select * from indent where userId=#{userId} order by iId desc")
+    public List<indent> selectListByUserid(@Param("userId")int userId);
 
 }

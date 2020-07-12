@@ -2,7 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
-import ssmBook.pojo.Category;
+import ssmBook.pojo.category;
 
 import java.util.List;
 
@@ -15,27 +15,27 @@ public interface CategoryDao {
     /**
      * 增加分类
      */
-    @Insert("insert into category (name) values (#{name})")
-    @SelectKey(before=false, keyProperty="id", resultType=Integer.class, statement="SELECT LAST_INSERT_ID()")
-    public boolean insert(Category category);
+    @Insert("insert into category (cName) values (#{cName})")
+    @SelectKey(before=false, keyProperty="cId", resultType=Integer.class, statement="SELECT LAST_INSERT_ID()")
+    public boolean insert(category category);
 
     /**
      * 删除分类
      */
-    @Delete("delete from category where id=#{id}")
-    public boolean delete(int id);
+    @Delete("delete from category where cId=#{cId}")
+    public boolean delete(int cId);
 
     /**
      * 修改分类
      */
-    @Update("update category set name=#{name} where id=#{id}")
-    public boolean update(Category user);
+    @Update("update category set cName=#{cName} where cId=#{cId}")
+    public boolean update(category category);
 
     /**
      * 通过ID查询分类（？？这个方法有用吗）
      */
-    @Select("select * from category where id=#{id}")
-    public Category select(int id);
+    @Select("select * from category where cId=#{cId}")
+    public category select(int cId);
 
     /**
      * 查询分类总数
@@ -47,11 +47,11 @@ public interface CategoryDao {
      * 查询所有分类（有行列显示要求的）
      */
     @Select("select * from category order by id desc limit #{begin}, #{size}")
-    public List<Category> selectList(@Param("begin")int begin, @Param("size")int size);
+    public List<category> selectList(@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 查询所有分类（无行列显示要求的）
      */
     @Select("select * from category order by id desc")
-    public List<Category> selectListAll();
+    public List<category> selectListAll();
 }
