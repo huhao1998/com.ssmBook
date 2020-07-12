@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh
-  Date: 2020/7/9
-  Time: 22:53
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 13:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>客户管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -38,7 +38,7 @@
         }
         function divhidden(){
             document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加管理员";
+            document.getElementById("btnhref").innerHTML ="添加客户";
             document.getElementById("btnhref").href ="javascript:divShow()";
         }
         function divShow1(){
@@ -48,7 +48,7 @@
         }
         function divhidden1(){
             document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有管理员";
+            document.getElementById("btnhref1").innerHTML ="查看所有客户信息";
             document.getElementById("btnhref1").href ="javascript:divShow1()";
         }
         function divShow2(){
@@ -158,7 +158,7 @@
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
                 <li><a href="modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="#">退出</a></li>
             </ul>
         </div>
         <div class="column1">
@@ -171,10 +171,10 @@
                     </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加客户</a>
+            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有客户信息</a>
                 <div id="btnshow" style=" display: none;">
-             <c:import url="admin-add.jsp"></c:import>
+             <c:import url="user-add.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
              <c:import url="allAdminList.jsp"></c:import>

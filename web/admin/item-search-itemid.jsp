@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh
-  Date: 2020/7/9
-  Time: 22:53
+  User: Yokyi
+  Date: 2020/7/12
+  Time: 13:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>订单详情编号查找结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -29,37 +29,6 @@
 
         window.onload=function(){
             altRows('alternatecolor');
-        }
-
-        function divShow(){
-            document.getElementById("btnshow").style.display="block";
-            document.getElementById("btnhref").innerHTML ="关闭";
-            document.getElementById("btnhref").href ="javascript:divhidden()";
-        }
-        function divhidden(){
-            document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加管理员";
-            document.getElementById("btnhref").href ="javascript:divShow()";
-        }
-        function divShow1(){
-            document.getElementById("btnshow1").style.display="block";
-            document.getElementById("btnhref1").innerHTML ="关闭";
-            document.getElementById("btnhref1").href ="javascript:divhidden1()";
-        }
-        function divhidden1(){
-            document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有管理员";
-            document.getElementById("btnhref1").href ="javascript:divShow1()";
-        }
-        function divShow2(){
-            document.getElementById("btnshow2").style.display="block";
-            document.getElementById("btnhref2").innerHTML ="关闭";
-            document.getElementById("btnhref2").href ="javascript:divhidden2()";
-        }
-        function divhidden2(){
-            document.getElementById("btnshow2").style.display="none";
-            document.getElementById("btnhref2").innerHTML ="增加订单";
-            document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
     <style type="text/css">
@@ -162,26 +131,25 @@
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>图书编号</th><th>图书名称</th><th>图书单价</th><th>图书数量</th><th>合计</th><th>操作</th>
+                </tr>
+                <tr>
+                    <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.bookId}嗷嗷</td>
+                    <td>${u.bookName}嗷嗷</td>
+                    <td>${u.bookPrice}</td>
+                    <td>${u.bookNum }</td>
+                    <td>${(u.bookPrice)*(u.bookNum) }</td>
+                    <td><a href="itemModify?id=${u.iid}">修改</a>&nbsp;
+                        <a href="itemDelete?id=${u.iid}">删除</a></td><!--返回id给后端-->
+                    </c:forEach>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="admin-add.jsp"></c:import>
-        </div>
-                <div id="btnshow1" style="display: none;">
-             <c:import url="allAdminList.jsp"></c:import>
-        </div>
-        </div>    
-    </div></div>
+  </div>
+
+</div>
 </div>
 </body>
 </html>
-
